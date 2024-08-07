@@ -1,0 +1,51 @@
+---
+title: "Embeddings"
+author: "Vivek Sivaramakrishnan"
+format: 
+    revealjs:
+        theme: [simple, theme.css]
+        incremental: true
+---
+
+## Data
+
+- Structured Data (Tabular)
+
+:::{.fragment}
+Cricketer | Runs
+---|---
+Virat Chicken | 100
+MSD | 106
+:::
+
+- Unstructured Data - Text, Images, Videos etc
+- How to use such data?
+- Somehow convert them to numbers
+
+## Text
+- How is text stored in a computer?
+
+:::{.fragment}
+```{=html}
+<iframe width="850" height="450" src="text.html"></iframe>
+```
+:::
+
+## Better way of doing this?
+
+- Bag-of-words
+
+:::{.fragment}
+```{=html}
+<iframe width="850" height="450" src="bagofwords.html"></iframe>
+```
+:::
+
+## Pictures
+- How are pictures stored in a computer?
+
+:::{.fragment}
+```{=html}
+<iframe width="950" height="500" src="pictels.html" title="Interactive Demo"></iframe>
+```
+:::
