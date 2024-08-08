@@ -70,7 +70,7 @@ lazy dog slept in the sun
 Given 2 sentences, the *similarity* between them can be defined as the number of words common to each other.
 :::
 
-## Worked-out Example {auto-animate="true"}
+## Sentence Similarity Example {auto-animate="true"}
 
 ::: {.border}
 quick brown fox jumps over the lazy dog
@@ -110,7 +110,7 @@ pen is mightier than `the` sword
 
 ::: {.bagofwordstable}
 
-|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+| | quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
 | **1** | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | **2** | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
@@ -123,7 +123,7 @@ pen is mightier than `the` sword
 
 ::: {.bagofwordstable auto-animate="true"}
 
-|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+| | quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
 | **1** | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | **2** | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
@@ -136,7 +136,7 @@ pen is mightier than `the` sword
 
 ::: {.bagofwordstable auto-animate="true"}
 
-|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+| | quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
 | **1** | 1 | 1 | 1 | 1 | 1 | `1` | `1` | `1` | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | **2** | 0 | 0 | 0 | 0 | 0 | `1` | `1` | `1` | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
@@ -149,7 +149,7 @@ pen is mightier than `the` sword
 
 ::: {.bagofwordstable auto-animate="true"}
 
-|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+| | quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
 | **1** | 1 | 1 | 1 | 1 | 1 | `1` | `1` | `1` | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | **2** | 0 | 0 | 0 | 0 | 0 | `1` | `1` | `1` | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
@@ -162,7 +162,7 @@ pen is mightier than `the` sword
 
 ::: {.bagofwordstable auto-animate="true"}
 
-|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+| | quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
 | **1** | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | **2** | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
@@ -175,7 +175,7 @@ pen is mightier than `the` sword
 
 ::: {.bagofwordstable auto-animate="true"}
 
-|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+| | quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
 | **1** | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | **2** | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
@@ -190,7 +190,7 @@ pen is mightier than `the` sword
 
 ::: {.bagofwordstable auto-animate="true"}
 
-|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+| | quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
 | **1** | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | **2** | 0 | 0 | 0 | 0 | 0 | `1` | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
@@ -224,14 +224,16 @@ pen is mightier than `the` sword
 
 - The ASCII representation will incur more steps in the calculation of sentence similarity.
 
-## Thought Excercise 1
+## Thought Excercise 1 {.smaller}
 - Given the *Bag-of-Words* features, is it possible to reconstruct the original sentence? Is it possible in the ASCII case?
 
-- Recall that the similarity between sentences `2` and `3` is one, because of the word `the`. Is this desirable?
+- Recall that the similarity between sentences `2` and `3` is `1`, because of the word `the`.
 
-- Consider the words `slept` and `sleeping`. The (current) Bag-of-Words approach classifies these into two seperate columns.
+- The words `slept` and `sleeping` are classified into two seperate columns.
 
-- What about words like `sleepy` and `drowzy` that convey more or less the same meanings (synonymns)? Can we come up with more meaningful features, such that the similarity score also becomes meaningful?
+- Words like `sleepy` and `drowzy` that convey more or less the same meanings (synonymns) also are given seperate columns
+
+- Is this desirable? Can we come up with more meaningful features, such that the similarity score also becomes meaningful?
 
 - The *Natural Language Processing* field delves into the above questions deeply.
 
