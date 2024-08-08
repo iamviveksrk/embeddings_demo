@@ -46,8 +46,8 @@ MSD | 106
 ```{mermaid}
 %%| mermaid-format: svg
 flowchart LR
-  A[Unstructured Data] -->  C{Embedder}
-  C --> D[Collection of Numbers]
+  A[Unstructured <br> Data] -->  C{Embedder}
+  C --> D[Collection of <br> Numbers]
 ```
 
 ## Another approach to text embedding
