@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; background-color: #2a0f15; font-weight: bold; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -320,6 +385,7 @@
       margin-right: 0; 
     }
   </style>
+  <script src="index_files/libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
 </head>
 <body class="quarto-dark">
   <div class="reveal">
@@ -327,13 +393,17 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Embeddings</h1>
+  <p class="subtitle">School Connect: Intro to DS &amp; AI</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
 Vivek Sivaramakrishnan 
 </div>
-</div>
+        <p class="quarto-title-affiliation">
+            Indian Institute of Technology, Madras
+          </p>
+    </div>
 </div>
 
 </section>
@@ -361,12 +431,12 @@ Vivek Sivaramakrishnan
 </tr>
 </tbody>
 </table>
-</div>
 <ul>
-<li class="fragment">Unstructured Data - Text, Images, Videos etc</li>
+<li class="fragment"><em>Unstructured Data</em> - text, images, videos, …</li>
 <li class="fragment">How to use such data?</li>
-<li class="fragment">Somehow convert them to numbers</li>
+<li class="fragment"><em>Somehow</em> convert them to numbers</li>
 </ul>
+</div>
 </section>
 <section id="text" class="slide level2">
 <h2>Text</h2>
@@ -374,26 +444,1065 @@ Vivek Sivaramakrishnan
 <li class="fragment">How is text stored in a computer?</li>
 </ul>
 <div class="fragment">
-<iframe width="850" height="450" src="text.html"></iframe>
+<iframe width="850" height="300" src="text.html"></iframe>
+<ul>
+<li class="fragment">The above is a (possible) way of representing text as numbers.</li>
+</ul>
 </div>
 </section>
-<section id="better-way-of-doing-this" class="slide level2">
-<h2>Better way of doing this?</h2>
+<section id="embedding" class="slide level2">
+<h2>Embedding</h2>
 <ul>
-<li class="fragment">Bag-of-words</li>
+<li class="fragment">To somehow convert raw unstructured data into numbers that can later be used as input to (ML) Algorithms.</li>
+</ul>
+<div class="fragment">
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="-8 -8 558.015625 137.265625" style="; display: block; margin: auto auto auto auto" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-1" height="480">
+<style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#ccc;}#mermaid-figure-1 .error-icon{fill:#a44141;}#mermaid-figure-1 .error-text{fill:#ddd;stroke:#ddd;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:2px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:lightgrey;stroke:lightgrey;}#mermaid-figure-1 .marker.cross{stroke:lightgrey;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#ccc;}#mermaid-figure-1 .cluster-label text{fill:#F9FFFE;}#mermaid-figure-1 .cluster-label span,#mermaid-figure-1 p{color:#F9FFFE;}#mermaid-figure-1 .label text,#mermaid-figure-1 span,#mermaid-figure-1 p{fill:#ccc;color:#ccc;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#1f2020;stroke:#81B1DB;stroke-width:1px;}#mermaid-figure-1 .flowchart-label text{text-anchor:middle;}#mermaid-figure-1 .node .label{text-align:center;}#mermaid-figure-1 .node.clickable{cursor:pointer;}#mermaid-figure-1 .arrowheadPath{fill:lightgrey;}#mermaid-figure-1 .edgePath .path{stroke:lightgrey;stroke-width:2.0px;}#mermaid-figure-1 .flowchart-link{stroke:lightgrey;fill:none;}#mermaid-figure-1 .edgeLabel{background-color:hsl(0, 0%, 34.4117647059%);text-align:center;}#mermaid-figure-1 .edgeLabel rect{opacity:0.5;background-color:hsl(0, 0%, 34.4117647059%);fill:hsl(0, 0%, 34.4117647059%);}#mermaid-figure-1 .cluster rect{fill:hsl(180, 1.5873015873%, 28.3529411765%);stroke:rgba(255, 255, 255, 0.25);stroke-width:1px;}#mermaid-figure-1 .cluster text{fill:#F9FFFE;}#mermaid-figure-1 .cluster span,#mermaid-figure-1 p{color:#F9FFFE;}#mermaid-figure-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(20, 1.5873015873%, 12.3529411765%);border:1px solid rgba(255, 255, 255, 0.25);border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#ccc;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
+<g><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="10" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="0" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-A LE-C" id="L-A-C-0" d="M146.5625,60.6328125L150.72916666666666,60.6328125C154.89583333333334,60.6328125,163.22916666666666,60.6328125,171.64583333333334,60.716145833333336C180.0625,60.799479166666664,188.5625,60.966145833333336,192.8125,61.049479166666664L197.0625,61.1328125"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-C LE-D" id="L-C-D-0" d="M318.328125,61.1328125L322.4114583333333,61.049479166666664C326.4947916666667,60.966145833333336,334.6614583333333,60.799479166666664,342.9114583333333,60.716145833333336C351.1614583333333,60.6328125,359.4947916666667,60.6328125,363.6614583333333,60.6328125L367.828125,60.6328125"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g></g><g class="nodes"><g transform="translate(73.28125, 60.6328125)" id="flowchart-A-8" class="node default default flowchart-label"><rect height="34" width="146.5625" y="-17" x="-73.28125" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-65.78125, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="131.5625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Unstructured Data</span>
+</div>
+</foreignobject></g></g><g transform="translate(257.1953125, 60.6328125)" id="flowchart-C-9" class="node default default flowchart-label"><polygon style="" transform="translate(-60.6328125,60.6328125)" class="label-container" points="60.6328125,0 121.265625,-60.6328125 60.6328125,-121.265625 0,-60.6328125"></polygon><g transform="translate(-36.1328125, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="72.265625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Embedder</span>
+</div>
+</foreignobject></g></g><g transform="translate(454.921875, 60.6328125)" id="flowchart-D-11" class="node default default flowchart-label"><rect height="34" width="174.1875" y="-17" x="-87.09375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-79.59375, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="159.1875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Collection of Numbers</span>
+</div>
+</foreignobject></g></g></g></g></g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="another-approach-to-text-embedding" class="slide level2">
+<h2>Another approach to text embedding</h2>
+<ul>
+<li class="fragment">The <em>Bag-of-words</em> approach</li>
 </ul>
 <div class="fragment">
 <iframe width="850" height="450" src="bagofwords.html"></iframe>
 </div>
 </section>
-<section id="pictures" class="slide level2">
+<section id="why" class="slide level2">
+<h2>Why?</h2>
+<div class="fragment">
+<p>Consider the following sentences:</p>
+</div>
+<div class="fragment">
+<div class="sourceCode" id="cb1" data-code-line-numbers="|1,3|2"><pre class="sourceCode numberSource ojs number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href=""></a>quick brown fox jumps over the lazy dog</span>
+<span id="cb1-2"><a href=""></a>pen is mightier than the sword</span>
+<span id="cb1-3"><a href=""></a>lazy dog slept in the sun</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li class="fragment"><p>Observe that sentences <code>1</code> and <code>3</code> are more <em>similar</em> to each other, than 2.</p></li>
+<li class="fragment"><p>We must concretize what we mean by <em>similarity</em></p></li>
+<li class="fragment"><p>A possible definition:</p></li>
+</ul>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Sentence Similarity</strong></p>
+</div>
+<div class="callout-content">
+<p>Given 2 sentences, the <em>similarity</em> between them can be defined as the number of words common to each other.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="sentence-similarity-example" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Sentence Similarity Example</h2>
+<div class="border">
+<p>quick brown fox jumps over the lazy dog</p>
+<p>lazy dog slept in the sun</p>
+</div>
+<div class="border">
+<p>quick brown fox jumps over the lazy dog</p>
+<p>pen is mightier than the sword</p>
+</div>
+</section>
+<section id="sentence-similarity-example-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Sentence Similarity Example</h2>
+<div class="border">
+<p>quick brown fox jumps over <code>the</code> <code>lazy</code> <code>dog</code></p>
+<p><code>lazy</code> <code>dog</code> slept in <code>the</code> sun</p>
+</div>
+<div class="border">
+<p>quick brown fox jumps over <code>the</code> lazy dog</p>
+<p>pen is mightier than <code>the</code> sword</p>
+</div>
+<ul>
+<li class="fragment">The first and second pairs of sentences have a similarity score of <code>3</code> and <code>1</code> respectively.</li>
+</ul>
+</section>
+<section id="enter-bag-of-words" class="slide level2">
+<h2>Enter <code>Bag-of-Words</code></h2>
+<ul>
+<li class="fragment"><p>Now suppose the <code>Bag-of-Words</code> embeddings are given instead of the sentences.</p></li>
+<li class="fragment"><p>Can the similarity score (between 1-2 and 1-3) still be computed?</p></li>
+</ul>
+<div class="fragment">
+<div class="bagofwordstable">
+<table class="caption-top">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sentence #</th>
+<th>quick</th>
+<th>brown</th>
+<th>fox</th>
+<th>jumps</th>
+<th>over</th>
+<th>the</th>
+<th>lazy</th>
+<th>dog</th>
+<th>slept</th>
+<th>in</th>
+<th>sun</th>
+<th>pen</th>
+<th>is</th>
+<th>mightier</th>
+<th>than</th>
+<th>sword</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment">Yes! Consider the dot product!</li>
+</ul>
+</div>
+</section>
+<section id="dot-product" class="slide level2">
+<h2>✨Dot-Product✨</h2>
+<div class="bagofwordstable">
+<table class="caption-top">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sentence #</th>
+<th>quick</th>
+<th>brown</th>
+<th>fox</th>
+<th>jumps</th>
+<th>over</th>
+<th>the</th>
+<th>lazy</th>
+<th>dog</th>
+<th>slept</th>
+<th>in</th>
+<th>sun</th>
+<th>pen</th>
+<th>is</th>
+<th>mightier</th>
+<th>than</th>
+<th>sword</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>similarity(1, 3) =</code></p>
+</section>
+<section id="dot-product-1" class="slide level2">
+<h2>✨Dot-Product✨</h2>
+<div class="bagofwordstable">
+<table class="caption-top">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sentence #</th>
+<th>quick</th>
+<th>brown</th>
+<th>fox</th>
+<th>jumps</th>
+<th>over</th>
+<th>the</th>
+<th>lazy</th>
+<th>dog</th>
+<th>slept</th>
+<th>in</th>
+<th>sun</th>
+<th>pen</th>
+<th>is</th>
+<th>mightier</th>
+<th>than</th>
+<th>sword</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>similarity(1, 3) =</code></p>
+</section>
+<section id="dot-product-2" class="slide level2">
+<h2>✨Dot-Product✨</h2>
+<div class="bagofwordstable">
+<table class="caption-top">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sentence #</th>
+<th>quick</th>
+<th>brown</th>
+<th>fox</th>
+<th>jumps</th>
+<th>over</th>
+<th>the</th>
+<th>lazy</th>
+<th>dog</th>
+<th>slept</th>
+<th>in</th>
+<th>sun</th>
+<th>pen</th>
+<th>is</th>
+<th>mightier</th>
+<th>than</th>
+<th>sword</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>similarity(1, 3) =  1 + 1 + 1</code></p>
+</section>
+<section id="dot-product-3" class="slide level2">
+<h2>✨Dot-Product✨</h2>
+<div class="bagofwordstable">
+<table class="caption-top">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sentence #</th>
+<th>quick</th>
+<th>brown</th>
+<th>fox</th>
+<th>jumps</th>
+<th>over</th>
+<th>the</th>
+<th>lazy</th>
+<th>dog</th>
+<th>slept</th>
+<th>in</th>
+<th>sun</th>
+<th>pen</th>
+<th>is</th>
+<th>mightier</th>
+<th>than</th>
+<th>sword</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>similarity(1, 3) = 3</code></p>
+</section>
+<section id="dot-product-4" class="slide level2">
+<h2>✨Dot-Product✨</h2>
+<div class="bagofwordstable">
+<table class="caption-top">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sentence #</th>
+<th>quick</th>
+<th>brown</th>
+<th>fox</th>
+<th>jumps</th>
+<th>over</th>
+<th>the</th>
+<th>lazy</th>
+<th>dog</th>
+<th>slept</th>
+<th>in</th>
+<th>sun</th>
+<th>pen</th>
+<th>is</th>
+<th>mightier</th>
+<th>than</th>
+<th>sword</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>similarity(1, 3) = 3</code></p>
+<p><code>similarity(2, 3) =</code></p>
+</section>
+<section id="dot-product-5" class="slide level2">
+<h2>✨Dot-Product✨</h2>
+<div class="bagofwordstable">
+<table class="caption-top">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sentence #</th>
+<th>quick</th>
+<th>brown</th>
+<th>fox</th>
+<th>jumps</th>
+<th>over</th>
+<th>the</th>
+<th>lazy</th>
+<th>dog</th>
+<th>slept</th>
+<th>in</th>
+<th>sun</th>
+<th>pen</th>
+<th>is</th>
+<th>mightier</th>
+<th>than</th>
+<th>sword</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><code>1</code></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><code>1</code></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>similarity(1, 3) = 3</code></p>
+<p><code>similarity(2, 3) =</code></p>
+</section>
+<section id="dot-product-6" class="slide level2">
+<h2>✨Dot-Product✨</h2>
+<div class="bagofwordstable">
+<table class="caption-top">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sentence #</th>
+<th>quick</th>
+<th>brown</th>
+<th>fox</th>
+<th>jumps</th>
+<th>over</th>
+<th>the</th>
+<th>lazy</th>
+<th>dog</th>
+<th>slept</th>
+<th>in</th>
+<th>sun</th>
+<th>pen</th>
+<th>is</th>
+<th>mightier</th>
+<th>than</th>
+<th>sword</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><code>1</code></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><code>1</code></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>similarity(1, 3) = 3</code></p>
+<p><code>similarity(2, 3) = 1</code></p>
+</section>
+<section id="the-bag-of-words-advantage" class="slide level2">
+<h2>The <em>Bag-of-Words</em> Advantage</h2>
+<ul>
+<li class="fragment"><p>Observe that by construction of the embedding, the calculation for the sentence-similarity is more straightforward.</p></li>
+<li class="fragment"><p>All the resulting embeddings are of an equal <em>length</em>. This is a desirable property.</p></li>
+<li class="fragment"><p>The ASCII representation will incur more steps in the calculation of sentence similarity.</p></li>
+</ul>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Thought Excercise</strong></p>
+</div>
+<div class="callout-content">
+<p>Given the <em>Bag-of-Words</em> embedding, is it possible to reconstruct the original sentence? Is it possible in the ASCII case?</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="pictures" class="slide level2 smaller">
 <h2>Pictures</h2>
 <ul>
-<li class="fragment">How are pictures stored in a computer?</li>
+<li class="fragment">How are pictures stored in a computer? Using Pixels</li>
 </ul>
 <div class="fragment">
 <iframe width="950" height="500" src="pictels.html" title="Interactive Demo"></iframe>
 </div>
+</section>
+<section id="section" class="slide level2 smaller">
+<h2></h2>
+<p>The more the colours, the more possible values a pixel can take.</p>
+<div id="578b114c" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-2-output-1.png" width="812" height="586"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li class="fragment">Number of Colors = <span class="math inline">\(2\)</span></li>
+</ul>
+</section>
+<section id="section-1" class="slide level2 smaller">
+<h2></h2>
+<p>The more the colours, the more possible values a pixel can take.</p>
+<div id="05c9f736" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-3-output-1.png" width="812" height="586"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li class="fragment">Number of Colors = <span class="math inline">\(255\)</span></li>
+</ul>
+</section>
+<section id="section-2" class="slide level2 smaller">
+<h2></h2>
+<p>The more the colours, the more possible values a pixel can take.</p>
+<div id="d7076242" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-4-output-1.png" width="812" height="586"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li class="fragment">Number of Colors = <span class="math inline">\(255^3 = 16581375\)</span></li>
+</ul>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 

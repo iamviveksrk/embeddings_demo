@@ -1,51 +1,341 @@
 ---
 title: "Embeddings"
+subtitle: "School Connect: Intro to DS & AI"
+institute: "Indian Institute of Technology, Madras"
 author: "Vivek Sivaramakrishnan"
 format: 
     revealjs:
-        theme: [simple, theme.css]
+        theme: [simple, theme.scss]
         incremental: true
+        mermaid:
+            theme: dark
 ---
 
 ## Data
 
 - Structured Data (Tabular)
 
-:::{.fragment}
+. . .
+
 Cricketer | Runs
 ---|---
 Virat Chicken | 100
 MSD | 106
-:::
 
-- Unstructured Data - Text, Images, Videos etc
+- *Unstructured Data* - text, images, videos, ...
 - How to use such data?
-- Somehow convert them to numbers
+- _Somehow_ convert them to numbers
 
 ## Text
 - How is text stored in a computer?
 
-:::{.fragment}
+. . .
+
 ```{=html}
-<iframe width="850" height="450" src="text.html"></iframe>
+<iframe width="850" height="300" src="text.html"></iframe>
 ```
-:::
 
-## Better way of doing this?
+- The above is a (possible) way of representing text as numbers.
 
-- Bag-of-words
+## Embedding
 
-:::{.fragment}
+- To somehow convert raw unstructured data into numbers that can later be used as input to (ML) Algorithms.
+
+. . .
+
+```{mermaid}
+%%| mermaid-format: svg
+flowchart LR
+  A[Unstructured Data] -->  C{Embedder}
+  C --> D[Collection of Numbers]
+```
+
+## Another approach to text embedding
+
+- The *Bag-of-words* approach
+
+. . .
+
 ```{=html}
 <iframe width="850" height="450" src="bagofwords.html"></iframe>
 ```
+
+## Why?
+
+. . .
+
+Consider the following sentences:
+
+. . .
+
+```{.ojs code-line-numbers="|1,3|2"}
+quick brown fox jumps over the lazy dog
+pen is mightier than the sword
+lazy dog slept in the sun
+```
+
+- Observe that sentences `1` and `3` are more *similar* to each other, than 2.
+
+- We must concretize what we mean by *similarity*
+
+- A possible definition: 
+
+::: {.fragment .callout-tip appearance="simple"}
+## Sentence Similarity
+Given 2 sentences, the *similarity* between them can be defined as the number of words common to each other.
 :::
 
-## Pictures
-- How are pictures stored in a computer?
+## Sentence Similarity Example {auto-animate="true"}
 
-:::{.fragment}
+::: {.border}
+quick brown fox jumps over the lazy dog
+
+lazy dog slept in the sun
+:::
+
+::: {.border}
+quick brown fox jumps over the lazy dog
+
+pen is mightier than the sword
+:::
+
+## Sentence Similarity Example {auto-animate="true"}
+
+::: {.border}
+quick brown fox jumps over `the` `lazy` `dog`
+
+`lazy` `dog` slept in `the` sun
+:::
+
+::: {.border}
+quick brown fox jumps over `the` lazy dog
+
+pen is mightier than `the` sword
+:::
+
+- The first and second pairs of sentences have a similarity score of `3` and `1` respectively.
+
+## Enter `Bag-of-Words`
+
+- Now suppose the `Bag-of-Words` embeddings are given instead of the sentences. 
+
+- Can the similarity score (between 1-2 and 1-3) still be computed?
+
+. . .
+
+::: {.bagofwordstable}
+
+|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+| **1** | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **2** | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
+| **3** | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 |
+:::
+
+- Yes! Consider the dot product!
+
+## ✨Dot-Product✨
+
+::: {.bagofwordstable}
+
+|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+| **1** | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **2** | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
+| **3** | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 |
+:::
+
+`similarity(1, 3) = `
+
+## ✨Dot-Product✨
+
+::: {.bagofwordstable}
+
+|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+| **1** | 1 | 1 | 1 | 1 | 1 | `1` | `1` | `1` | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **2** | 0 | 0 | 0 | 0 | 0 | `1` | `1` | `1` | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
+| **3** | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 |
+:::
+
+`similarity(1, 3) =  `
+
+## ✨Dot-Product✨
+
+::: {.bagofwordstable}
+
+|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+| **1** | 1 | 1 | 1 | 1 | 1 | `1` | `1` | `1` | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **2** | 0 | 0 | 0 | 0 | 0 | `1` | `1` | `1` | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
+| **3** | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 |
+:::
+
+`similarity(1, 3) =  1 + 1 + 1`
+
+## ✨Dot-Product✨
+
+::: {.bagofwordstable}
+
+|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+| **1** | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **2** | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
+| **3** | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 |
+:::
+
+`similarity(1, 3) = 3`
+
+## ✨Dot-Product✨
+
+::: {.bagofwordstable}
+
+|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+| **1** | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **2** | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
+| **3** | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 |
+:::
+
+`similarity(1, 3) = 3`
+
+`similarity(2, 3) = `
+
+## ✨Dot-Product✨
+
+::: {.bagofwordstable}
+
+|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+| **1** | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **2** | 0 | 0 | 0 | 0 | 0 | `1` | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
+| **3** | 0 | 0 | 0 | 0 | 0 | `1` | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 |
+:::
+
+`similarity(1, 3) = 3`
+
+`similarity(2, 3) = `
+
+## ✨Dot-Product✨
+
+::: {.bagofwordstable}
+
+|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+| **1** | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **2** | 0 | 0 | 0 | 0 | 0 | `1` | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
+| **3** | 0 | 0 | 0 | 0 | 0 | `1` | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 |
+:::
+
+`similarity(1, 3) = 3`
+
+`similarity(2, 3) = 1`
+
+## The *Bag-of-Words* Advantage
+
+- Observe that by construction of the embedding, the calculation for the sentence-similarity is more straightforward.
+
+- All the resulting embeddings are of an equal *length*. This is a desirable property.
+
+- The ASCII representation will incur more steps in the calculation of sentence similarity.
+
+::: {.fragment .callout-tip appearance="simple"}
+## Thought Excercise
+Given the *Bag-of-Words* embedding, is it possible to reconstruct the original sentence? Is it possible in the ASCII case?
+:::
+
+## Pictures {.smaller}
+- How are pictures stored in a computer? Using Pixels
+
+. . .
+
 ```{=html}
 <iframe width="950" height="500" src="pictels.html" title="Interactive Demo"></iframe>
 ```
-:::
+
+## {.smaller}
+
+The more the colours, the more possible values a pixel can take.
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+mario = plt.imread('mario.png')
+
+mario_bw = np.array([[i[-1] for i in j] for j in mario])
+
+fig, axes = plt.subplot_mosaic("AB;AC;AD", gridspec_kw={'width_ratios': [3, 1]}, figsize=(6, 4), dpi=150)
+for i in 'ABCD':
+    axes[i].set_xticks([])
+    axes[i].set_yticks([])
+
+axes['A'].imshow(mario_bw, extent=(0, 17, 0, 16), cmap='grey', vmin=0, vmax=1)
+
+pixels = [(10, 8), (4, 4), (15, 1)]
+
+for i, (x, y) in zip('BCD', pixels):
+    axes['A'].add_patch(plt.Rectangle((x, y), 1, 1, edgecolor='green', fill=False))
+    pixel_color = str(int(mario_bw[15-y, x]*1))
+    axes[i].imshow((mario_bw[15-y:16-y, x:x+1]), cmap='grey', vmin=0, vmax=1)
+    axes[i].set_xlabel(f"{pixel_color}")
+
+fig.subplots_adjust(left=0,right=1,bottom=0,top=1)
+plt.tight_layout()
+```
+
+- Number of Colors = $2$
+
+## {.smaller}
+
+The more the colours, the more possible values a pixel can take.
+
+```{python}
+mario_grey = np.array([[i[:-1].mean() for i in j] for j in mario])
+
+fig, axes = plt.subplot_mosaic("AB;AC;AD", gridspec_kw={'width_ratios': [3, 1]}, figsize=(6, 4), dpi=150)
+for i in 'ABCD':
+    axes[i].set_xticks([])
+    axes[i].set_yticks([])
+
+axes['A'].imshow(mario_grey, extent=(0, 17, 0, 16), cmap='grey', vmin=0, vmax=1)
+
+pixels = [(10, 8), (4, 4), (15, 1)]
+
+for i, (x, y) in zip('BCD', pixels):
+    axes['A'].add_patch(plt.Rectangle((x, y), 1, 1, edgecolor='green', fill=False))
+    pixel_color = str(int(mario_grey[15-y, x]*255))
+    axes[i].imshow((mario_grey[15-y:16-y, x:x+1]), cmap='grey', vmin=0, vmax=1)
+    axes[i].set_xlabel(f"{pixel_color}")
+
+fig.subplots_adjust(left=0,right=1,bottom=0,top=1)
+plt.tight_layout()
+```
+
+- Number of Colors = $255$
+
+## {.smaller}
+
+The more the colours, the more possible values a pixel can take.
+
+```{python}
+fig, axes = plt.subplot_mosaic("AB;AC;AD", gridspec_kw={'width_ratios': [3, 1]}, figsize=(6, 4), dpi=150)
+for i in 'ABCD':
+    axes[i].set_xticks([])
+    axes[i].set_yticks([])
+
+axes['A'].imshow(mario, extent=(0, 17, 0, 16))
+
+pixels = [(10, 8), (4, 4), (15, 1)]
+
+for i, (x, y) in zip('BCD', pixels):
+    axes['A'].add_patch(plt.Rectangle((x, y), 1, 1, edgecolor='green', fill=False))
+    pixel_color = ', '.join([str(int(j*255)) for j in mario[15-y, x][:-1]])
+    axes[i].imshow((mario[15-y:16-y, x:x+1]))
+    axes[i].set_xlabel(f"{pixel_color}")
+
+fig.subplots_adjust(left=0,right=1,bottom=0,top=1)
+plt.tight_layout()
+```
+
+- Number of Colors = $255^3 = 16581375$

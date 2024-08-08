@@ -3,8 +3,8 @@
 <head>
   <title>Picture-in-Pixels | Pictels!</title>
 </head>
-<body bgcolor="151921">
-  <canvas id="myCanvas" width="900" height="450"></canvas>
+<body bgcolor="#151931">
+  <canvas id="myCanvas" width="860" height="450"></canvas>
   
   <script>
     const canvas = document.getElementById('myCanvas');
@@ -55,7 +55,7 @@
     const on_mouse_move = (x, y) => {
       if (!drawing) return;
       
-      if (x < mid - width/40) {
+      if (x>1 && x < mid - width/40) {
         ctx.fillRect(myround(x), myround(y), marker_size, marker_size);
         ctx.clearRect(mid + width/20 + myround(x) - font_size/4, myround(y) + font_size/4, font_size, font_size);
         ctx.strokeText('1', mid + width/20 + myround(x), myround(y) + font_size);
