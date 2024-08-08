@@ -17,10 +17,12 @@ format:
 
 . . .
 
-Cricketer | Runs
----|---
-Virat Chicken | 100
-MSD | 106
+Player|Team|Ave|SR
+---|---|---|---|
+Ibrahim Zadran|Afghanistan|28.87|107.44
+Rahmanullah Gurbaz|Afghanistan|35.12|124.33
+JC Buttler|England|42.8|158.51
+PD Salt|England|37.6|159.32
 
 - *Unstructured Data* - text, images, videos, ...
 - How to use such data?
@@ -231,7 +233,7 @@ pen is mightier than `the` sword
 
 - The words `slept` and `sleeping` are classified into two seperate columns.
 
-- Words like `sleepy` and `drowzy` that convey more or less the same meanings (synonymns) also are given seperate columns
+- Words like `sleepy` and `drowzy` that convey more or less the same meanings (synonyms) also are given seperate columns
 
 - Is this desirable? Can we come up with more meaningful features, such that the similarity score also becomes meaningful?
 
