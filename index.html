@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.5.56">
 
   <meta name="author" content="Vivek Sivaramakrishnan">
-  <title>Feature Engineering in an Unstructured Setting</title>
+  <title>Obtaining Features in an Unstructured Setting</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -391,7 +391,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Feature Engineering in an Unstructured Setting</h1>
+  <h1 class="title">Obtaining Features in an Unstructured Setting</h1>
   <p class="subtitle">School Connect: Intro to DS &amp; AI</p>
 
 <div class="quarto-title-authors">
@@ -518,7 +518,7 @@ Vivek Sivaramakrishnan
 <h2>Enter <code>Bag-of-Words</code></h2>
 <ul>
 <li class="fragment"><p>Now suppose the <code>Bag-of-Words</code> features are given instead of the sentences.</p></li>
-<li class="fragment"><p>Can the similarity score (between <code>1</code>-<code>2</code> and <code>1</code>-<code>3</code>) still be computed?</p></li>
+<li class="fragment"><p>Can the similarity score (between <code>1</code>-<code>3</code> and <code>2</code>-<code>3</code>) still be computed?</p></li>
 </ul>
 <div class="fragment">
 <div class="bagofwordstable">
@@ -591,16 +591,16 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
 </tr>
 <tr class="odd">
 <td><strong>3</strong></td>
@@ -610,16 +610,16 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>
@@ -701,16 +701,16 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
 </tr>
 <tr class="odd">
 <td><strong>3</strong></td>
@@ -720,16 +720,16 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>
@@ -807,17 +807,17 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td>0</td>
-<td><code>1</code></td>
-<td><code>1</code></td>
-<td><code>1</code></td>
-<td>1</td>
-<td>1</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
 </tr>
 <tr class="odd">
 <td><strong>3</strong></td>
@@ -826,17 +826,17 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td>0</td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td>1</td>
+<td>1</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -914,17 +914,17 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td>0</td>
-<td><code>1</code></td>
-<td><code>1</code></td>
-<td><code>1</code></td>
-<td>1</td>
-<td>1</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
 </tr>
 <tr class="odd">
 <td><strong>3</strong></td>
@@ -933,17 +933,17 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td>0</td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td>1</td>
+<td>1</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -1022,16 +1022,16 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
 </tr>
 <tr class="odd">
 <td><strong>3</strong></td>
@@ -1041,16 +1041,16 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>
@@ -1129,16 +1129,16 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
 </tr>
 <tr class="odd">
 <td><strong>3</strong></td>
@@ -1148,16 +1148,16 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>
@@ -1237,16 +1237,16 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td><code>1</code></td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
 </tr>
 <tr class="odd">
 <td><strong>3</strong></td>
@@ -1256,16 +1256,16 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td><code>1</code></td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>
@@ -1345,16 +1345,16 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td><code>1</code></td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
 </tr>
 <tr class="odd">
 <td><strong>3</strong></td>
@@ -1364,16 +1364,16 @@ Vivek Sivaramakrishnan
 <td>0</td>
 <td>0</td>
 <td><code>1</code></td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>
@@ -1389,8 +1389,8 @@ Vivek Sivaramakrishnan
 <li class="fragment"><p>The ASCII representation will incur more steps in the calculation of sentence similarity.</p></li>
 </ul>
 </section>
-<section id="thought-excercise-1" class="slide level2 smaller">
-<h2>Thought Excercise 1</h2>
+<section id="thought-exercise-1" class="slide level2 smaller">
+<h2>Thought Exercise 1</h2>
 <ul>
 <li class="fragment"><p>Given the <em>Bag-of-Words</em> features, is it possible to reconstruct the original sentence? Is it possible in the ASCII case?</p></li>
 <li class="fragment"><p>Recall that the similarity between sentences <code>2</code> and <code>3</code> is <code>1</code>, because of the word <code>the</code>.</p></li>
@@ -1412,7 +1412,7 @@ Vivek Sivaramakrishnan
 <section id="section" class="slide level2 smaller">
 <h2></h2>
 <p>The more the colours, the more possible values a pixel can take.</p>
-<div id="80707cc4" class="cell" data-execution_count="1">
+<div id="fabc9534" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1428,7 +1428,7 @@ Vivek Sivaramakrishnan
 <section id="section-1" class="slide level2 smaller">
 <h2></h2>
 <p>The more the colours, the more possible values a pixel can take.</p>
-<div id="b5dd3fdb" class="cell" data-execution_count="2">
+<div id="e44e250b" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1444,7 +1444,7 @@ Vivek Sivaramakrishnan
 <section id="section-2" class="slide level2 smaller">
 <h2></h2>
 <p>The more the colours, the more possible values a pixel can take.</p>
-<div id="0b1dd43e" class="cell" data-execution_count="3">
+<div id="64cce137" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
