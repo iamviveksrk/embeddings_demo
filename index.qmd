@@ -1,5 +1,5 @@
 ---
-title: "Feature Engineering in an Unstructured setting"
+title: "Feature Engineering in an Unstructured Setting"
 subtitle: "School Connect: Intro to DS & AI"
 institute: "Indian Institute of Technology, Madras"
 author: "Vivek Sivaramakrishnan"
