@@ -36,8 +36,10 @@
         table {
             border-collapse: collapse;
             width: 100%;
+            table-layout: fixed;
             border: 1px solid #ddd;
             font-family: monospace; /* Apply monospace font to table */
+            font-size: 12px;
         }
 
         th, td {
@@ -45,6 +47,7 @@
             padding: 8px;
             text-align: center;
             font-family: monospace; /* Apply monospace font to table cells */
+            font-size: 12px;
         }
 
         th {
@@ -73,7 +76,6 @@ quick brown fox jumps over lazy dog
 the lazy dog slept in the sun
 the quick brown fox and the lazy dog
 jumped over the lazy dog quickly
-the dog is lazy and quick
         </textarea><br>
         <table id="wordCountTable"></table>
     </div>
@@ -106,7 +108,7 @@ the dog is lazy and quick
             sentences.forEach((sentence, index) => {
                 const row = table.insertRow();
                 const sentenceCell = row.insertCell();
-                sentenceCell.textContent = `Sentence ${index + 1}`;
+                sentenceCell.textContent = `${index + 1}`;
 
                 const words = sentence.replace(/[^\w\s]/g, '').toLowerCase().split(' ');
                 const wordCounts = {};

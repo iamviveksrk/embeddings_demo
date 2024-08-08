@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.5.56">
 
   <meta name="author" content="Vivek Sivaramakrishnan">
-  <title>Embeddings</title>
+  <title>Feature Engineering in an Unstructrued setting</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -385,14 +385,13 @@
       margin-right: 0; 
     }
   </style>
-  <script src="index_files/libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
 </head>
 <body class="quarto-dark">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Embeddings</h1>
+  <h1 class="title">Feature Engineering in an Unstructrued setting</h1>
   <p class="subtitle">School Connect: Intro to DS &amp; AI</p>
 
 <div class="quarto-title-authors">
@@ -434,7 +433,7 @@ Vivek Sivaramakrishnan
 <ul>
 <li class="fragment"><em>Unstructured Data</em> - text, images, videos, …</li>
 <li class="fragment">How to use such data?</li>
-<li class="fragment"><em>Somehow</em> convert them to numbers</li>
+<li class="fragment"><em>Somehow</em> convert them to (a collection of) numbers</li>
 </ul>
 </div>
 </section>
@@ -446,72 +445,30 @@ Vivek Sivaramakrishnan
 <div class="fragment">
 <iframe width="850" height="300" src="text.html"></iframe>
 <ul>
-<li class="fragment">The above is a (possible) way of representing text as numbers.</li>
+<li class="fragment">The above is a (possible) way of representing text as numbers (features).</li>
 </ul>
 </div>
 </section>
-<section id="embedding" class="slide level2">
-<h2>Embedding</h2>
+<section id="the-bag-of-words-approach" class="slide level2">
+<h2>The <code>Bag-of-Words</code> approach</h2>
 <ul>
-<li class="fragment">To somehow convert raw unstructured data into numbers that can later be used as input to (ML) Algorithms.</li>
-</ul>
-<div class="fragment">
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="-8 -8 452.828125 137.265625" style="; display: block; margin: auto auto auto auto" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-1" height="480">
-<style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#ccc;}#mermaid-figure-1 .error-icon{fill:#a44141;}#mermaid-figure-1 .error-text{fill:#ddd;stroke:#ddd;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:2px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:lightgrey;stroke:lightgrey;}#mermaid-figure-1 .marker.cross{stroke:lightgrey;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#ccc;}#mermaid-figure-1 .cluster-label text{fill:#F9FFFE;}#mermaid-figure-1 .cluster-label span,#mermaid-figure-1 p{color:#F9FFFE;}#mermaid-figure-1 .label text,#mermaid-figure-1 span,#mermaid-figure-1 p{fill:#ccc;color:#ccc;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#1f2020;stroke:#81B1DB;stroke-width:1px;}#mermaid-figure-1 .flowchart-label text{text-anchor:middle;}#mermaid-figure-1 .node .label{text-align:center;}#mermaid-figure-1 .node.clickable{cursor:pointer;}#mermaid-figure-1 .arrowheadPath{fill:lightgrey;}#mermaid-figure-1 .edgePath .path{stroke:lightgrey;stroke-width:2.0px;}#mermaid-figure-1 .flowchart-link{stroke:lightgrey;fill:none;}#mermaid-figure-1 .edgeLabel{background-color:hsl(0, 0%, 34.4117647059%);text-align:center;}#mermaid-figure-1 .edgeLabel rect{opacity:0.5;background-color:hsl(0, 0%, 34.4117647059%);fill:hsl(0, 0%, 34.4117647059%);}#mermaid-figure-1 .cluster rect{fill:hsl(180, 1.5873015873%, 28.3529411765%);stroke:rgba(255, 255, 255, 0.25);stroke-width:1px;}#mermaid-figure-1 .cluster text{fill:#F9FFFE;}#mermaid-figure-1 .cluster span,#mermaid-figure-1 p{color:#F9FFFE;}#mermaid-figure-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(20, 1.5873015873%, 12.3529411765%);border:1px solid rgba(255, 255, 255, 0.25);border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#ccc;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="10" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="0" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-A LE-C" id="L-A-C-0" d="M108.765625,60.6328125L112.93229166666667,60.6328125C117.09895833333333,60.6328125,125.43229166666667,60.6328125,133.84895833333334,60.716145833333336C142.265625,60.799479166666664,150.765625,60.966145833333336,155.015625,61.049479166666664L159.265625,61.1328125"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-C LE-D" id="L-C-D-0" d="M280.53125,61.1328125L284.6145833333333,61.049479166666664C288.6979166666667,60.966145833333336,296.8645833333333,60.799479166666664,305.1145833333333,60.716145833333336C313.3645833333333,60.6328125,321.6979166666667,60.6328125,325.8645833333333,60.6328125L330.03125,60.6328125"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g></g><g class="nodes"><g transform="translate(54.3828125, 60.6328125)" id="flowchart-A-8" class="node default default flowchart-label"><rect height="53" width="108.765625" y="-26.5" x="-54.3828125" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-46.8828125, -19)" style="" class="label"><rect></rect><foreignobject height="38" width="93.765625">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Unstructured <br> Data</span>
-</div>
-</foreignobject></g></g><g transform="translate(219.3984375, 60.6328125)" id="flowchart-C-9" class="node default default flowchart-label"><polygon style="" transform="translate(-60.6328125,60.6328125)" class="label-container" points="60.6328125,0 121.265625,-60.6328125 60.6328125,-121.265625 0,-60.6328125"></polygon><g transform="translate(-36.1328125, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="72.265625">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Embedder</span>
-</div>
-</foreignobject></g></g><g transform="translate(383.4296875, 60.6328125)" id="flowchart-D-11" class="node default default flowchart-label"><rect height="53" width="106.796875" y="-26.5" x="-53.3984375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-45.8984375, -19)" style="" class="label"><rect></rect><foreignobject height="38" width="91.796875">
-<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Collection of <br> Numbers</span>
-</div>
-</foreignobject></g></g></g></g></g>
-</svg>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="another-approach-to-text-embedding" class="slide level2">
-<h2>Another approach to text embedding</h2>
-<ul>
-<li class="fragment">The <em>Bag-of-words</em> approach</li>
+<li class="fragment">Count the number of words in each sentence/document.</li>
 </ul>
 <div class="fragment">
 <iframe width="850" height="450" src="bagofwords.html"></iframe>
 </div>
 </section>
-<section id="why" class="slide level2">
-<h2>Why?</h2>
-<div class="fragment">
-<p>Consider the following sentences:</p>
-</div>
+<section id="sentence-similarity" class="slide level2">
+<h2>Sentence Similarity</h2>
+<ul>
+<li class="fragment">Consider the following sentences:</li>
+</ul>
 <div class="fragment">
 <div class="sourceCode" id="cb1" data-code-line-numbers="|1,3|2"><pre class="sourceCode numberSource ojs number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href=""></a>quick brown fox jumps over the lazy dog</span>
 <span id="cb1-2"><a href=""></a>pen is mightier than the sword</span>
 <span id="cb1-3"><a href=""></a>lazy dog slept in the sun</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li class="fragment"><p>Observe that sentences <code>1</code> and <code>3</code> are more <em>similar</em> to each other, than 2.</p></li>
+<li class="fragment"><p>Observe that sentences <code>1</code> and <code>3</code> are more <em>similar</em> to each other, than with <code>2</code>.</p></li>
 <li class="fragment"><p>We must concretize what we mean by <em>similarity</em></p></li>
 <li class="fragment"><p>A possible definition:</p></li>
 </ul>
@@ -532,8 +489,8 @@ Vivek Sivaramakrishnan
 </div>
 </div>
 </section>
-<section id="sentence-similarity-example" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Sentence Similarity Example</h2>
+<section id="worked-out-example" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Worked-out Example</h2>
 <div class="border">
 <p>quick brown fox jumps over the lazy dog</p>
 <p>lazy dog slept in the sun</p>
@@ -543,7 +500,7 @@ Vivek Sivaramakrishnan
 <p>pen is mightier than the sword</p>
 </div>
 </section>
-<section id="sentence-similarity-example-1" class="slide level2" data-auto-animate="true">
+<section id="sentence-similarity-example" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Sentence Similarity Example</h2>
 <div class="border">
 <p>quick brown fox jumps over <code>the</code> <code>lazy</code> <code>dog</code></p>
@@ -560,8 +517,8 @@ Vivek Sivaramakrishnan
 <section id="enter-bag-of-words" class="slide level2">
 <h2>Enter <code>Bag-of-Words</code></h2>
 <ul>
-<li class="fragment"><p>Now suppose the <code>Bag-of-Words</code> embeddings are given instead of the sentences.</p></li>
-<li class="fragment"><p>Can the similarity score (between 1-2 and 1-3) still be computed?</p></li>
+<li class="fragment"><p>Now suppose the <code>Bag-of-Words</code> features are given instead of the sentences.</p></li>
+<li class="fragment"><p>Can the similarity score (between <code>1</code>-<code>2</code> and <code>1</code>-<code>3</code>) still be computed?</p></li>
 </ul>
 <div class="fragment">
 <div class="bagofwordstable">
@@ -668,13 +625,13 @@ Vivek Sivaramakrishnan
 </table>
 </div>
 <ul>
-<li class="fragment">Yes! Consider the dot product!</li>
+<li class="fragment">Yes! Consider the dot product.</li>
 </ul>
 </div>
 </section>
 <section id="dot-product" class="slide level2">
 <h2>✨Dot-Product✨</h2>
-<div class="bagofwordstable">
+<div class="bagofwordstable" data-auto-animate="true">
 <table class="caption-top">
 <colgroup>
 <col style="width: 5%">
@@ -781,7 +738,7 @@ Vivek Sivaramakrishnan
 </section>
 <section id="dot-product-1" class="slide level2">
 <h2>✨Dot-Product✨</h2>
-<div class="bagofwordstable">
+<div class="bagofwordstable" data-auto-animate="true">
 <table class="caption-top">
 <colgroup>
 <col style="width: 5%">
@@ -888,7 +845,7 @@ Vivek Sivaramakrishnan
 </section>
 <section id="dot-product-2" class="slide level2">
 <h2>✨Dot-Product✨</h2>
-<div class="bagofwordstable">
+<div class="bagofwordstable" data-auto-animate="true">
 <table class="caption-top">
 <colgroup>
 <col style="width: 5%">
@@ -995,7 +952,7 @@ Vivek Sivaramakrishnan
 </section>
 <section id="dot-product-3" class="slide level2">
 <h2>✨Dot-Product✨</h2>
-<div class="bagofwordstable">
+<div class="bagofwordstable" data-auto-animate="true">
 <table class="caption-top">
 <colgroup>
 <col style="width: 5%">
@@ -1102,7 +1059,7 @@ Vivek Sivaramakrishnan
 </section>
 <section id="dot-product-4" class="slide level2">
 <h2>✨Dot-Product✨</h2>
-<div class="bagofwordstable">
+<div class="bagofwordstable" data-auto-animate="true">
 <table class="caption-top">
 <colgroup>
 <col style="width: 5%">
@@ -1210,7 +1167,7 @@ Vivek Sivaramakrishnan
 </section>
 <section id="dot-product-5" class="slide level2">
 <h2>✨Dot-Product✨</h2>
-<div class="bagofwordstable">
+<div class="bagofwordstable" data-auto-animate="true">
 <table class="caption-top">
 <colgroup>
 <col style="width: 5%">
@@ -1318,7 +1275,7 @@ Vivek Sivaramakrishnan
 </section>
 <section id="dot-product-6" class="slide level2">
 <h2>✨Dot-Product✨</h2>
-<div class="bagofwordstable">
+<div class="bagofwordstable" data-auto-animate="true">
 <table class="caption-top">
 <colgroup>
 <col style="width: 5%">
@@ -1341,7 +1298,7 @@ Vivek Sivaramakrishnan
 </colgroup>
 <thead>
 <tr class="header">
-<th>Sentence #</th>
+<th></th>
 <th>quick</th>
 <th>brown</th>
 <th>fox</th>
@@ -1427,30 +1384,25 @@ Vivek Sivaramakrishnan
 <section id="the-bag-of-words-advantage" class="slide level2">
 <h2>The <em>Bag-of-Words</em> Advantage</h2>
 <ul>
-<li class="fragment"><p>Observe that by construction of the embedding, the calculation for the sentence-similarity is more straightforward.</p></li>
-<li class="fragment"><p>All the resulting embeddings are of an equal <em>length</em>. This is a desirable property.</p></li>
+<li class="fragment"><p>Observe that by construction of the bag-of-words features, the calculation for sentence-similarity is more straightforward.</p></li>
+<li class="fragment"><p>All the resulting features are of an equal <em>length</em>. This is generally a desirable property.</p></li>
 <li class="fragment"><p>The ASCII representation will incur more steps in the calculation of sentence similarity.</p></li>
 </ul>
-<div class="fragment">
-<div class="callout callout-tip callout-titled callout-style-simple">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Thought Excercise</strong></p>
-</div>
-<div class="callout-content">
-<p>Given the <em>Bag-of-Words</em> embedding, is it possible to reconstruct the original sentence? Is it possible in the ASCII case?</p>
-</div>
-</div>
-</div>
-</div>
+</section>
+<section id="thought-excercise-1" class="slide level2">
+<h2>Thought Excercise 1</h2>
+<ul>
+<li class="fragment"><p>Given the <em>Bag-of-Words</em> features, is it possible to reconstruct the original sentence? Is it possible in the ASCII case?</p></li>
+<li class="fragment"><p>Recall that the similarity between sentences <code>2</code> and <code>3</code> is one, because of the word <code>the</code>. Is this desirable?</p></li>
+<li class="fragment"><p>Consider the words <code>slept</code> and <code>sleeping</code>. The (current) Bag-of-Words approach classifies these into two seperate columns.</p></li>
+<li class="fragment"><p>What about words like <code>sleepy</code> and <code>drowzy</code> that convey more or less the same meanings (synonymns)? Can we come up with more meaningful features, such that the similarity score also becomes meaningful?</p></li>
+<li class="fragment"><p>The <em>Natural Language Processing</em> field delves into the above questions deeply.</p></li>
+</ul>
 </section>
 <section id="pictures" class="slide level2 smaller">
 <h2>Pictures</h2>
 <ul>
-<li class="fragment">How are pictures stored in a computer? Using Pixels</li>
+<li class="fragment">How are pictures stored in a computer? Using <code>Pixels</code></li>
 </ul>
 <div class="fragment">
 <iframe width="950" height="500" src="pictels.html" title="Interactive Demo"></iframe>
@@ -1459,7 +1411,7 @@ Vivek Sivaramakrishnan
 <section id="section" class="slide level2 smaller">
 <h2></h2>
 <p>The more the colours, the more possible values a pixel can take.</p>
-<div id="88481962" class="cell" data-execution_count="1">
+<div id="4d5d2108" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1475,7 +1427,7 @@ Vivek Sivaramakrishnan
 <section id="section-1" class="slide level2 smaller">
 <h2></h2>
 <p>The more the colours, the more possible values a pixel can take.</p>
-<div id="f4a97722" class="cell" data-execution_count="2">
+<div id="b96ca913" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1485,13 +1437,13 @@ Vivek Sivaramakrishnan
 </div>
 </div>
 <ul>
-<li class="fragment">Number of Colors = <span class="math inline">\(255\)</span></li>
+<li class="fragment">Number of Colors = <span class="math inline">\(256\)</span></li>
 </ul>
 </section>
 <section id="section-2" class="slide level2 smaller">
 <h2></h2>
 <p>The more the colours, the more possible values a pixel can take.</p>
-<div id="42c096fd" class="cell" data-execution_count="3">
+<div id="a012f36f" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1501,9 +1453,14 @@ Vivek Sivaramakrishnan
 </div>
 </div>
 <ul>
-<li class="fragment">Number of Colors = <span class="math inline">\(255^3 = 16581375\)</span></li>
+<li class="fragment">Number of Colors = <span class="math inline">\(256^3 = 16777216\)</span></li>
 </ul>
-<div class="quarto-auto-generated-content">
+</section>
+<section id="picture-features" class="slide level2">
+<h2>Picture Features</h2>
+<p>The raw pixel values of the image can be used as features for algorithms.</p>
+
+<img data-src="mario_to_pixel.svg" class="r-stretch quarto-figure-center"><p class="caption">Mario To Pixels</p><div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>

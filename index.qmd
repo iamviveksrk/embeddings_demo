@@ -1,5 +1,5 @@
 ---
-title: "Embeddings"
+title: "Feature Engineering in an Unstructrued setting"
 subtitle: "School Connect: Intro to DS & AI"
 institute: "Indian Institute of Technology, Madras"
 author: "Vivek Sivaramakrishnan"
@@ -24,7 +24,7 @@ MSD | 106
 
 - *Unstructured Data* - text, images, videos, ...
 - How to use such data?
-- _Somehow_ convert them to numbers
+- _Somehow_ convert them to (a collection of) numbers
 
 ## Text
 - How is text stored in a computer?
@@ -35,24 +35,11 @@ MSD | 106
 <iframe width="850" height="300" src="text.html"></iframe>
 ```
 
-- The above is a (possible) way of representing text as numbers.
+- The above is a (possible) way of representing text as numbers (features).
 
-## Embedding
+## The `Bag-of-Words` approach
 
-- To somehow convert raw unstructured data into numbers that can later be used as input to (ML) Algorithms.
-
-. . .
-
-```{mermaid}
-%%| mermaid-format: svg
-flowchart LR
-  A[Unstructured <br> Data] -->  C{Embedder}
-  C --> D[Collection of <br> Numbers]
-```
-
-## Another approach to text embedding
-
-- The *Bag-of-words* approach
+- Count the number of words in each sentence/document.
 
 . . .
 
@@ -60,11 +47,9 @@ flowchart LR
 <iframe width="850" height="450" src="bagofwords.html"></iframe>
 ```
 
-## Why?
+## Sentence Similarity
 
-. . .
-
-Consider the following sentences:
+- Consider the following sentences:
 
 . . .
 
@@ -74,7 +59,7 @@ pen is mightier than the sword
 lazy dog slept in the sun
 ```
 
-- Observe that sentences `1` and `3` are more *similar* to each other, than 2.
+- Observe that sentences `1` and `3` are more *similar* to each other, than with `2`.
 
 - We must concretize what we mean by *similarity*
 
@@ -85,7 +70,7 @@ lazy dog slept in the sun
 Given 2 sentences, the *similarity* between them can be defined as the number of words common to each other.
 :::
 
-## Sentence Similarity Example {auto-animate="true"}
+## Worked-out Example {auto-animate="true"}
 
 ::: {.border}
 quick brown fox jumps over the lazy dog
@@ -117,9 +102,9 @@ pen is mightier than `the` sword
 
 ## Enter `Bag-of-Words`
 
-- Now suppose the `Bag-of-Words` embeddings are given instead of the sentences. 
+- Now suppose the `Bag-of-Words` features are given instead of the sentences. 
 
-- Can the similarity score (between 1-2 and 1-3) still be computed?
+- Can the similarity score (between `1`-`2` and `1`-`3`) still be computed?
 
 . . .
 
@@ -132,11 +117,11 @@ pen is mightier than `the` sword
 | **3** | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 |
 :::
 
-- Yes! Consider the dot product!
+- Yes! Consider the dot product.
 
 ## ✨Dot-Product✨
 
-::: {.bagofwordstable}
+::: {.bagofwordstable auto-animate="true"}
 
 |Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
@@ -149,7 +134,7 @@ pen is mightier than `the` sword
 
 ## ✨Dot-Product✨
 
-::: {.bagofwordstable}
+::: {.bagofwordstable auto-animate="true"}
 
 |Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
@@ -162,7 +147,7 @@ pen is mightier than `the` sword
 
 ## ✨Dot-Product✨
 
-::: {.bagofwordstable}
+::: {.bagofwordstable auto-animate="true"}
 
 |Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
@@ -175,7 +160,7 @@ pen is mightier than `the` sword
 
 ## ✨Dot-Product✨
 
-::: {.bagofwordstable}
+::: {.bagofwordstable auto-animate="true"}
 
 |Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
@@ -188,7 +173,7 @@ pen is mightier than `the` sword
 
 ## ✨Dot-Product✨
 
-::: {.bagofwordstable}
+::: {.bagofwordstable auto-animate="true"}
 
 |Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
@@ -203,7 +188,7 @@ pen is mightier than `the` sword
 
 ## ✨Dot-Product✨
 
-::: {.bagofwordstable}
+::: {.bagofwordstable auto-animate="true"}
 
 |Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
@@ -218,9 +203,9 @@ pen is mightier than `the` sword
 
 ## ✨Dot-Product✨
 
-::: {.bagofwordstable}
+::: {.bagofwordstable auto-animate="true"}
 
-|Sentence #| quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
+| | quick | brown | fox | jumps | over | the | lazy | dog | slept | in | sun | pen | is | mightier | than | sword |
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
 | **1** | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | **2** | 0 | 0 | 0 | 0 | 0 | `1` | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
@@ -233,19 +218,25 @@ pen is mightier than `the` sword
 
 ## The *Bag-of-Words* Advantage
 
-- Observe that by construction of the embedding, the calculation for the sentence-similarity is more straightforward.
+- Observe that by construction of the bag-of-words features, the calculation for sentence-similarity is more straightforward.
 
-- All the resulting embeddings are of an equal *length*. This is a desirable property.
+- All the resulting features are of an equal *length*. This is generally a desirable property.
 
 - The ASCII representation will incur more steps in the calculation of sentence similarity.
 
-::: {.fragment .callout-tip appearance="simple"}
-## Thought Excercise
-Given the *Bag-of-Words* embedding, is it possible to reconstruct the original sentence? Is it possible in the ASCII case?
-:::
+## Thought Excercise 1
+- Given the *Bag-of-Words* features, is it possible to reconstruct the original sentence? Is it possible in the ASCII case?
+
+- Recall that the similarity between sentences `2` and `3` is one, because of the word `the`. Is this desirable?
+
+- Consider the words `slept` and `sleeping`. The (current) Bag-of-Words approach classifies these into two seperate columns.
+
+- What about words like `sleepy` and `drowzy` that convey more or less the same meanings (synonymns)? Can we come up with more meaningful features, such that the similarity score also becomes meaningful?
+
+- The *Natural Language Processing* field delves into the above questions deeply.
 
 ## Pictures {.smaller}
-- How are pictures stored in a computer? Using Pixels
+- How are pictures stored in a computer? Using `Pixels`
 
 . . .
 
@@ -312,7 +303,7 @@ fig.subplots_adjust(left=0,right=1,bottom=0,top=1)
 plt.tight_layout()
 ```
 
-- Number of Colors = $255$
+- Number of Colors = $256$
 
 ## {.smaller}
 
@@ -338,4 +329,10 @@ fig.subplots_adjust(left=0,right=1,bottom=0,top=1)
 plt.tight_layout()
 ```
 
-- Number of Colors = $255^3 = 16581375$
+- Number of Colors = $256^3 = 16777216$
+
+## Picture Features
+
+The raw pixel values of the image can be used as features for algorithms.
+
+![Mario To Pixels](mario_to_pixel.svg)
